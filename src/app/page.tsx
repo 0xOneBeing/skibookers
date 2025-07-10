@@ -5,7 +5,6 @@ import {
   InfoCircleOutlined,
   StarOutlined,
   CheckCircleOutlined,
-  FileImageOutlined,
 } from "@ant-design/icons";
 import { TripComponentCard } from "@/components/TripComponentCard";
 import { CustomizationModal } from "@/components/CustomizationModal";
