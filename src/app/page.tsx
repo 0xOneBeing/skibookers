@@ -5,6 +5,7 @@ import {
   InfoCircleOutlined,
   StarOutlined,
   CheckCircleOutlined,
+  ArrowRightOutlined,
 } from "@ant-design/icons";
 import { TripComponentCard } from "@/components/TripComponentCard";
 import { CustomizationModal } from "@/components/CustomizationModal";
@@ -145,6 +146,28 @@ export default function SkiTripBooking() {
                         <h3 className="text-lg font-semibold mb-4 text-gray-800">
                           Similar Destinations You Might Like
                         </h3>
+
+                        <div className="flex items-center mb-0 px-4">
+                          <ArrowRightOutlined 
+                            className="text-blue-500 text-lg" 
+                            style={{
+                              animation: 'bounceRight 2s ease-in-out infinite',
+                              animationDelay: '1s'
+                            }}
+                          />
+                          <span className="ml-2 text-sm text-gray-500">Scroll to see more</span>
+                        </div>
+                        
+                        <style dangerouslySetInnerHTML={{
+                          __html: `
+                            @keyframes bounceRight {
+                              0%, 20%, 50%, 80%, 100% { transform: translateX(0); }
+                              40% { transform: translateX(10px); }
+                              60% { transform: translateX(5px); }
+                            }
+                          `
+                        }} />
+
                         <div className="flex space-x-4 overflow-x-auto pb-4">
                           {aiRecommendations.map((dest, index) => (
                             <div
