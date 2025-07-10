@@ -50,7 +50,7 @@ export default function SkiTripBooking() {
           style={{
             opacity: 0.9,
             backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundPosition: "bottom",
             backgroundRepeat: "no-repeat",
             backgroundBlendMode: "soft-light",
             backgroundColor: "rgba(0, 0, 0, 0.3)",
@@ -69,7 +69,13 @@ export default function SkiTripBooking() {
 
             <div className="flex space-x-4">
               {selectedResort.tags.map((tag, index) => (
-                <Tag key={index} color={index === 0 ? "blue" : index === 1 ? "purple" : "green"} className="px-3 py-1 text-sm">
+                <Tag
+                  key={index}
+                  color={
+                    index === 0 ? "blue" : index === 1 ? "purple" : "green"
+                  }
+                  className="px-3 py-1 text-sm"
+                >
                   {tag}
                 </Tag>
               ))}
@@ -78,12 +84,12 @@ export default function SkiTripBooking() {
 
           <div className="hidden lg:flex w-full max-w-md image-preview-container">
             <Image
-              height={200}
               width={300}
+              height={200}
               alt={selectedResort.name}
               src={selectedResort.image}
+              style={{ objectFit: "cover", opacity: 0.3 }}
               className="object-cover rounded-lg shadow-lg shadow-purple-500/50"
-              style={{ objectFit: 'cover' }}
             />
           </div>
         </div>
