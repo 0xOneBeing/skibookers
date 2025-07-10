@@ -59,7 +59,6 @@ export default function SkiTripBooking() {
         <div className="relative max-w-7xl mx-auto px-8 py-20">
           <div className="text-white">
             <div className="flex items-center gap-2 md:gap-4 mb-4">
-              <h1 className="text-5xl font-bold">Alpine Heights</h1>
               <div className="w-10">
                 <Image
                   height={50}
@@ -68,6 +67,7 @@ export default function SkiTripBooking() {
                   src="/alpine-heights.png"
                 />
               </div>
+              <h1 className="text-5xl font-bold">Alpine Heights</h1>
             </div>
             <p className="text-xl mb-6 max-w-2xl">
               Experience the ultimate ski adventure in the heart of Chamonix
@@ -148,25 +148,29 @@ export default function SkiTripBooking() {
                         </h3>
 
                         <div className="flex items-center mb-0 px-4">
-                          <ArrowRightOutlined 
-                            className="text-blue-500 text-lg" 
+                          <ArrowRightOutlined
+                            className="text-blue-500 text-lg"
                             style={{
-                              animation: 'bounceRight 2s ease-in-out infinite',
-                              animationDelay: '1s'
+                              animation: "bounceRight 2s ease-in-out infinite",
+                              animationDelay: "1s",
                             }}
                           />
-                          <span className="ml-2 text-sm text-gray-500">Scroll to see more</span>
+                          <span className="ml-2 text-sm text-gray-500">
+                            Scroll to see more
+                          </span>
                         </div>
-                        
-                        <style dangerouslySetInnerHTML={{
-                          __html: `
+
+                        <style
+                          dangerouslySetInnerHTML={{
+                            __html: `
                             @keyframes bounceRight {
                               0%, 20%, 50%, 80%, 100% { transform: translateX(0); }
                               40% { transform: translateX(10px); }
                               60% { transform: translateX(5px); }
                             }
-                          `
-                        }} />
+                          `,
+                          }}
+                        />
 
                         <div className="flex space-x-4 overflow-x-auto pb-4">
                           {aiRecommendations.map((dest, index) => (
