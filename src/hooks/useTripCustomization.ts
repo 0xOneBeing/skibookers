@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { TripComponent, ComponentOption } from "@/types/trip";
+import { App } from "antd";
 
 export const useTripCustomization = (initialComponents: TripComponent[]) => {
   const [tripComponents, setTripComponents] =
@@ -7,6 +8,8 @@ export const useTripCustomization = (initialComponents: TripComponent[]) => {
   const [selectedComponent, setSelectedComponent] =
     useState<TripComponent | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { message } = App.useApp();
 
   const totalPrice = tripComponents.reduce(
     (sum, component) => sum + component.price,
@@ -38,8 +41,8 @@ export const useTripCustomization = (initialComponents: TripComponent[]) => {
 
   const handleCheckout = useCallback(() => {
     console.log("Proceeding to checkout with components:", tripComponents);
-    alert("Proceeding to checkout...");
-  }, [tripComponents]);
+    message.info("Proceeding to checkout...");
+  }, [tripComponents, message]);
 
   return {
     tripComponents,
