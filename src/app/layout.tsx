@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { ConfigProvider } from "antd";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,9 +14,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SkiBookers",
-  description:
-    "SkiBookers is a platform for booking ski trips and accommodations.",
+  title: "Skibookers - Customize Your Ski Trip",
+  description: "Review and customize your personalized ski trip package",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -28,7 +31,17 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ConfigProvider
+          theme={{
+            token: {
+              colorPrimary: "#3b82f6",
+              borderRadius: 8,
+              fontSize: 14,
+            },
+          }}
+        >
+          {children}
+        </ConfigProvider>
       </body>
     </html>
   );
