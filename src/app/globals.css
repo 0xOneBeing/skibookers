@@ -1,4 +1,26 @@
 @import "tailwindcss";
+/* @tailwind base; */
+/* @tailwind components; */
+@tailwind utilities;
+
+/* Custom styles for Ant Design integration */
+.ant-card {
+  @apply shadow-sm;
+}
+
+.ant-btn-primary {
+  @apply bg-blue-600 hover:bg-blue-700 border-blue-600 hover:border-blue-700;
+}
+
+/* Custom gradient button */
+.gradient-button {
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  border: none;
+}
+
+.gradient-button:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+}
 
 :root {
   --background: #ffffff;

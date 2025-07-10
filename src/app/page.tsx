@@ -1,103 +1,244 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { Card, Image, Tag, Collapse } from "antd";
+import {
+  InfoCircleOutlined,
+  StarOutlined,
+  CheckCircleOutlined,
+} from "@ant-design/icons";
+import { TripComponentCard } from "@/components/TripComponentCard";
+import { CustomizationModal } from "@/components/CustomizationModal";
+import { PriceSummary } from "@/components/PriceSummary";
+import { useTripCustomization } from "@/hooks/useTripCustomization";
+import { mockTripComponents, mockUserPreferences } from "@/utils/mockData";
+import { UserPreferences, TripSummary } from "@/types/trip";
+
+export default function SkiTripBooking() {
+  const {
+    tripComponents,
+    selectedComponent,
+    isModalOpen,
+    totalPrice,
+    handleComponentEdit,
+    handleModalClose,
+    updateComponent,
+    handleCheckout,
+  } = useTripCustomization(mockTripComponents);
+
+  const userPreferences: UserPreferences = mockUserPreferences;
+
+  const tripSummary: TripSummary = {
+    totalPrice,
+    duration: "7 days, 6 nights",
+    dates: "Jan 12-19, 2025",
+    travelers: "2 adults",
+    destination: "Alpine Heights",
+  };
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section with Resort */}
+      <div className="relative h-96 bg-black overflow-hidden">
+        <div
+          className="absolute inset-0 bg-black bg-opacity-30"
+          style={{
+            opacity: 0.9,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundBlendMode: "soft-light",
+            backgroundColor: "rgba(0, 0, 0, 0.3)",
+            backgroundImage: "url('/alpine-heights.png')",
+          }}
+        ></div>
+        <div className="relative max-w-7xl mx-auto px-8 py-20">
+          <div className="text-white">
+            <div className="flex items-center gap-2 md:gap-4 mb-4">
+              <h1 className="text-5xl font-bold">Alpine Heights</h1>
+              <div className="w-10">
+                <Image
+                  height={50}
+                  width={"100%"}
+                  alt="Alpine Heights"
+                  src="/alpine-heights.png"
+                />
+              </div>
+            </div>
+            <p className="text-xl mb-6 max-w-2xl">
+              Experience the ultimate ski adventure in the heart of Chamonix
+              Valley. Expert-friendly slopes meet vibrant après-ski culture in
+              this legendary resort.
+            </p>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <div className="flex space-x-4">
+              <Tag color="blue" className="px-3 py-1 text-sm">
+                Expert-friendly
+              </Tag>
+              <Tag color="purple" className="px-3 py-1 text-sm">
+                Vibrant nightlife
+              </Tag>
+              <Tag color="green" className="px-3 py-1 text-sm">
+                Chamonix Valley
+              </Tag>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-8 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-2">
+            {/* Trip Package Overview */}
+            <Card
+              className="border-0 shadow-lg"
+              style={{ marginBottom: "32px" }}
+              title={
+                <div className="flex items-center space-x-3">
+                  <StarOutlined className="text-yellow-500" />
+                  <span className="text-2xl font-semibold">
+                    Your Trip Package
+                  </span>
+                </div>
+              }
+            >
+              <Collapse
+                items={[
+                  {
+                    key: "1",
+                    label: (
+                      <div className="flex items-center space-x-3">
+                        <CheckCircleOutlined className="text-green-500" />
+                        <span className="font-semibold">
+                          AI Recommendations
+                        </span>
+                      </div>
+                    ),
+                    children: (
+                      <div>
+                        <p className="text-gray-600 mb-4">
+                          Based on your preferences:{" "}
+                          <span className="font-medium text-blue-600">
+                            {userPreferences.vibe}
+                          </span>
+                          ,{" "}
+                          <span className="font-medium text-green-600">
+                            {userPreferences.budget}
+                          </span>
+                          ,{" "}
+                          <span className="font-medium text-purple-600">
+                            {userPreferences.groupType}
+                          </span>
+                        </p>
+                        <div className="bg-blue-50 p-4 rounded-lg mb-4">
+                          <p className="text-sm text-blue-700">
+                            <InfoCircleOutlined className="mr-2" />
+                            AI has curated this trip based on similar travelers
+                            who loved the party atmosphere and challenging
+                            slopes of Alpine Heights.
+                          </p>
+                        </div>
+                        <h3 className="text-lg font-semibold mb-4 text-gray-800">
+                          Similar Destinations You Might Like
+                        </h3>
+                        <div className="flex space-x-4 overflow-x-auto pb-4">
+                          {[
+                            {
+                              name: "Val d'Isère",
+                              image: `https://picsum.photos/300/200?random=${Math.random()}`,
+                              price: "$1,280",
+                              rating: 4.8,
+                              features: ["Expert slopes", "Luxury resorts"],
+                            },
+                            {
+                              name: "Verbier",
+                              image: `https://picsum.photos/300/200?random=${Math.random()}`,
+                              price: "$1,150",
+                              rating: 4.7,
+                              features: ["Party scene", "Off-piste"],
+                            },
+                            {
+                              name: "St. Anton",
+                              image: `https://picsum.photos/300/200?random=${Math.random()}`,
+                              price: "$980",
+                              rating: 4.6,
+                              features: ["Challenging runs", "Après-ski"],
+                            },
+                            {
+                              name: "Courchevel",
+                              image: `https://picsum.photos/300/200?random=${Math.random()}`,
+                              price: "$1,450",
+                              rating: 4.9,
+                              features: ["Luxury", "Fine dining"],
+                            },
+                          ].map((dest, index) => (
+                            <div
+                              key={index}
+                              className="flex-shrink-0 w-64 bg-white rounded-lg shadow-lg p-4 hover:shadow-xl hover:bg-blue-50 hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                            >
+                              <Image
+                                src={dest.image}
+                                alt={dest.name}
+                                className="w-full h-32 object-cover rounded-lg mb-3"
+                                preview={false}
+                              />
+                              <h4 className="font-semibold text-gray-800 mb-1">
+                                {dest.name}
+                              </h4>
+                              <div className="flex items-center justify-between mb-2">
+                                <span className="text-lg font-bold text-blue-600">
+                                  {dest.price}
+                                </span>
+                                <span className="text-sm text-gray-600">
+                                  ★ {dest.rating}
+                                </span>
+                              </div>
+                              <div className="flex flex-wrap gap-1">
+                                {dest.features.map((feature, i) => (
+                                  <span
+                                    key={i}
+                                    className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded"
+                                  >
+                                    {feature}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ),
+                  },
+                ]}
+                className="mb-4"
+              />
+              <div className="space-y-4 mt-6">
+                {tripComponents.map((component) => (
+                  <TripComponentCard
+                    key={component.id}
+                    component={component}
+                    onEdit={handleComponentEdit}
+                  />
+                ))}
+              </div>
+            </Card>
+          </div>
+
+          {/* Sidebar */}
+          <div className="lg:col-span-1">
+            <PriceSummary summary={tripSummary} onCheckout={handleCheckout} />
+          </div>
+        </div>
+      </div>
+
+      {/* Customization Modal */}
+      <CustomizationModal
+        open={isModalOpen}
+        onSave={handleModalClose}
+        onCancel={handleModalClose}
+        component={selectedComponent}
+        onOptionSelect={updateComponent}
+      />
     </div>
   );
 }
