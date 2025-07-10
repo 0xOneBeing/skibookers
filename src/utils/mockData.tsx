@@ -8,7 +8,8 @@ import {
   PaperClipOutlined,
   RocketOutlined,
 } from "@ant-design/icons";
-import { TripComponent, UserPreferences } from "@/types/trip";
+
+import { AIRecommendations, TripComponent, UserPreferences } from "@/types/trip";
 
 export const mockTripComponents: TripComponent[] = [
   {
@@ -269,6 +270,37 @@ export const mockTripComponents: TripComponent[] = [
         description: "VIP club entries + 3 drink vouchers",
       },
     ],
+  },
+];
+
+export const aiRecommendations:AIRecommendations[] = [
+  {
+    name: "Val d'Isère",
+    image: `https://picsum.photos/300/200?random=${Math.random()}`,
+    price: "$1,280",
+    rating: 4.8,
+    features: ["Expert slopes", "Luxury resorts"],
+  },
+  {
+    name: "Verbier",
+    image: `https://picsum.photos/300/200?random=${Math.random()}`,
+    price: "$1,150",
+    rating: 4.7,
+    features: ["Party scene", "Off-piste"],
+  },
+  {
+    name: "St. Anton",
+    image: `https://picsum.photos/300/200?random=${Math.random()}`,
+    price: "$980",
+    rating: 4.6,
+    features: ["Challenging runs", "Après-ski"],
+  },
+  {
+    name: "Courchevel",
+    image: `https://picsum.photos/300/200?random=${Math.random()}`,
+    price: "$1,450",
+    rating: 4.9,
+    features: ["Luxury", "Fine dining"],
   },
 ];
 

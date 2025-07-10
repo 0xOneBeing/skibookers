@@ -10,7 +10,11 @@ import { TripComponentCard } from "@/components/TripComponentCard";
 import { CustomizationModal } from "@/components/CustomizationModal";
 import { PriceSummary } from "@/components/PriceSummary";
 import { useTripCustomization } from "@/hooks/useTripCustomization";
-import { mockTripComponents, mockUserPreferences } from "@/utils/mockData";
+import {
+  aiRecommendations,
+  mockTripComponents,
+  mockUserPreferences,
+} from "@/utils/mockData";
 import { UserPreferences, TripSummary } from "@/types/trip";
 
 export default function SkiTripBooking() {
@@ -142,36 +146,7 @@ export default function SkiTripBooking() {
                           Similar Destinations You Might Like
                         </h3>
                         <div className="flex space-x-4 overflow-x-auto pb-4">
-                          {[
-                            {
-                              name: "Val d'Isère",
-                              image: `https://picsum.photos/300/200?random=${Math.random()}`,
-                              price: "$1,280",
-                              rating: 4.8,
-                              features: ["Expert slopes", "Luxury resorts"],
-                            },
-                            {
-                              name: "Verbier",
-                              image: `https://picsum.photos/300/200?random=${Math.random()}`,
-                              price: "$1,150",
-                              rating: 4.7,
-                              features: ["Party scene", "Off-piste"],
-                            },
-                            {
-                              name: "St. Anton",
-                              image: `https://picsum.photos/300/200?random=${Math.random()}`,
-                              price: "$980",
-                              rating: 4.6,
-                              features: ["Challenging runs", "Après-ski"],
-                            },
-                            {
-                              name: "Courchevel",
-                              image: `https://picsum.photos/300/200?random=${Math.random()}`,
-                              price: "$1,450",
-                              rating: 4.9,
-                              features: ["Luxury", "Fine dining"],
-                            },
-                          ].map((dest, index) => (
+                          {aiRecommendations.map((dest, index) => (
                             <div
                               key={index}
                               className="flex-shrink-0 w-64 bg-white rounded-lg shadow-lg p-4 hover:shadow-xl hover:bg-blue-50 hover:-translate-y-1 transition-all duration-300 cursor-pointer"
