@@ -13,7 +13,7 @@ export const PriceSummary: React.FC<PriceSummaryProps> = ({
   onCheckout,
 }) => {
   return (
-    <Card className="border-0 shadow-lg sticky top-8">
+    <Card className="border-0 shadow-lg sticky">
       <div className="text-center mb-6">
         <h3 className="text-2xl font-semibold mb-2">Trip Summary</h3>
         <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-4 rounded-lg">
