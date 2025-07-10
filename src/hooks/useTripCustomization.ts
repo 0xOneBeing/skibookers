@@ -37,7 +37,6 @@ export const useTripCustomization = (initialComponents: TripComponent[]) => {
   );
 
   const handleCheckout = useCallback(() => {
-    // Implement checkout logic
     console.log("Proceeding to checkout with components:", tripComponents);
     alert("Proceeding to checkout...");
   }, [tripComponents]);
