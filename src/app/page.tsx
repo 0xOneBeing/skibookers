@@ -82,7 +82,7 @@ export default function SkiTripBooking() {
               width={300}
               alt={selectedResort.name}
               src={selectedResort.image}
-              className="object-cover rounded-lg"
+              className="object-cover rounded-lg shadow-lg shadow-purple-500/50"
               style={{ objectFit: 'cover' }}
             />
           </div>
