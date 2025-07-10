@@ -46,16 +46,16 @@ export default function SkiTripBooking() {
       {/* Hero Section with Resort */}
       <div className="relative h-96 bg-black overflow-hidden">
         <div
-          className="absolute inset-0 bg-black bg-opacity-30"
-          style={{
-            opacity: 0.9,
-            backgroundSize: "cover",
-            backgroundPosition: "bottom",
-            backgroundRepeat: "no-repeat",
-            backgroundBlendMode: "soft-light",
-            backgroundColor: "rgba(0, 0, 0, 0.3)",
-            backgroundImage: "url('/alpine-heights.png')",
-          }}
+          className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-700 bg-opacity-30"
+          // style={{
+          //   opacity: 0.9,
+          //   backgroundSize: "cover",
+          //   backgroundPosition: "bottom",
+          //   backgroundRepeat: "no-repeat",
+          //   backgroundBlendMode: "soft-light",
+          //   backgroundColor: "rgba(0, 0, 0, 0.3)",
+          //   backgroundImage: "url('/alpine-heights.png')",
+          // }}
         ></div>
         <div className="relative max-w-7xl mx-auto px-8 py-20 flex items-center justify-between gap-4">
           <div className="text-white">
@@ -88,7 +88,7 @@ export default function SkiTripBooking() {
               height={200}
               alt={selectedResort.name}
               src={selectedResort.image}
-              style={{ objectFit: "cover", opacity: 0.3 }}
+              style={{ objectFit: "cover" }}
               className="object-cover rounded-lg shadow-lg shadow-purple-500/50"
             />
           </div>
