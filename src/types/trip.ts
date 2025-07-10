@@ -18,6 +18,14 @@ export interface TripComponent {
   features?: string[];
 }
 
+export interface AIRecommendations {
+  name: string;
+  image: string;
+  price: number | string;
+  rating: number | string;
+  features: string[];
+}
+
 export interface ComponentOption {
   label: string;
   value: string;
