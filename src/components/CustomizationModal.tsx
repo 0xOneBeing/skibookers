@@ -1,5 +1,5 @@
-import React from "react";
-import { Modal, Button, Badge } from "antd";
+import React, { useState, useEffect } from "react";
+import { Modal, Button, Badge, App } from "antd";
 import { TripComponent, ComponentOption } from "@/types/trip";
 
 interface CustomizationModalProps {
@@ -17,8 +17,47 @@ export const CustomizationModal: React.FC<CustomizationModalProps> = ({
   onSave,
   onOptionSelect,
 }) => {
+  const { message } = App.useApp();
+
+  const [selectedOption, setSelectedOption] = useState<ComponentOption | null>(
+    null
+  );
+
+  useEffect(() => {
+    if (component && open) {
+      const currentOption = component.options?.find(
+        (opt) => opt.price === component.price
+      );
+      setSelectedOption(currentOption || null);
+    }
+  }, [component, open]);
+
+  const handleOptionClick = (option: ComponentOption) => {
+    setSelectedOption(option);
+  };
+
+  const handleSave = () => {
+    if (selectedOption && component) {
+      onOptionSelect(component.id, selectedOption);
+      message.success(
+        `${
+          component.type[0].toUpperCase() + component.type.slice(1)
+        } updated to ${selectedOption.label}`
+      );
+    }
+    onSave();
+  };
+
+  const handleCancel = () => {
+    if (component) {
+      const currentOption = component.options?.find(
+        (opt) => opt.price === component.price
+      );
+      setSelectedOption(currentOption || null);
+    }
+    onCancel();
+  };
   const getComponentIcon = (type: string) => {
-    // Icon mapping logic
     console.log("Component type:", type);
     return component?.icon;
   };
@@ -44,13 +83,13 @@ export const CustomizationModal: React.FC<CustomizationModalProps> = ({
         )
       }
       open={open}
-      onCancel={onCancel}
+      onCancel={handleCancel}
       width={700}
       footer={[
         <Button key="cancel" onClick={onCancel}>
           Cancel
         </Button>,
-        <Button key="save" type="primary" onClick={onSave}>
+        <Button key="save" type="primary" onClick={handleSave}>
           Save Changes
         </Button>,
       ]}
@@ -64,8 +103,17 @@ export const CustomizationModal: React.FC<CustomizationModalProps> = ({
             {component.options?.map((option) => (
               <div
                 key={option.value}
-                className="border rounded-lg p-4 hover:border-blue-500 cursor-pointer transition-colors relative"
-                onClick={() => onOptionSelect(component.id, option)}
+                className={`border rounded-lg p-4 hover:border-blue-500 cursor-pointer transition-colors relative ${
+                  selectedOption?.value === option.value
+                    ? "border-blue-500 bg-blue-50"
+                    : calculatePriceDifference(
+                        option.price,
+                        component.price
+                      ) === "Current selection"
+                    ? "border-green-500 bg-green-50"
+                    : "border-gray-200"
+                }`}
+                onClick={() => handleOptionClick(option)}
               >
                 {option.popular && (
                   <Badge.Ribbon
