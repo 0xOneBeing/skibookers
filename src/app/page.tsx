@@ -230,12 +230,13 @@ export default function SkiTripBooking() {
         <div
           className="absolute inset-0 bg-black bg-opacity-30"
           style={{
-            backgroundImage: "url('/alpine-heights.png')",
+            opacity: 0.5,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
-            // opacity: 0.8,
-            backgroundBlendMode: "softlight",
+            backgroundBlendMode: "soft-light",
+            backgroundColor: "rgba(0, 0, 0, 0.3)",
+            backgroundImage: "url('/alpine-heights.png')",
           }}
         ></div>
         <div className="relative max-w-7xl mx-auto px-8 py-20">
