@@ -18,6 +18,7 @@ import {
   selectedResort,
 } from "@/utils/mockData";
 import { UserPreferences, TripSummary } from "@/types/trip";
+import { useState } from "react";
 
 export default function SkiTripBooking() {
   const {
@@ -33,6 +34,8 @@ export default function SkiTripBooking() {
 
   const userPreferences: UserPreferences = mockUserPreferences;
 
+  const [visible, setVisible] = useState<boolean>(false);
+
   const tripSummary: TripSummary = {
     totalPrice,
     duration: "7 days, 6 nights",
@@ -47,15 +50,15 @@ export default function SkiTripBooking() {
       <div className="relative h-96 bg-black overflow-hidden">
         <div
           className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-700 bg-opacity-30"
-          // style={{
-          //   opacity: 0.9,
-          //   backgroundSize: "cover",
-          //   backgroundPosition: "bottom",
-          //   backgroundRepeat: "no-repeat",
-          //   backgroundBlendMode: "soft-light",
-          //   backgroundColor: "rgba(0, 0, 0, 0.3)",
-          //   backgroundImage: "url('/alpine-heights.png')",
-          // }}
+          style={{
+            opacity: 0.9,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundBlendMode: "soft-light",
+            backgroundColor: "rgba(0, 0, 0, 0.3)",
+            backgroundImage: "url('/alpine-heights.png')",
+          }}
         ></div>
         <div className="relative max-w-7xl mx-auto px-8 py-20 flex items-center justify-between gap-4">
           <div className="text-white">
@@ -63,8 +66,15 @@ export default function SkiTripBooking() {
               <h1 className="text-5xl font-bold">{selectedResort.name}</h1>
             </div>
 
-            <p className="text-xl mb-6 max-w-2xl">
+            <p className="text-xl max-w-2xl">
               {selectedResort.description}
+            </p>
+
+            <p
+              onClick={() => setVisible(true)}
+              className="text-blue-500 hover:underline hover:text-blue-700 cursor-pointer my-6"
+            >
+              Show image preview
             </p>
 
             <div className="flex space-x-4">
@@ -88,7 +98,14 @@ export default function SkiTripBooking() {
               height={200}
               alt={selectedResort.name}
               src={selectedResort.image}
-              style={{ objectFit: "cover" }}
+              preview={{
+                visible,
+                src: selectedResort.image,
+                onVisibleChange: (value) => {
+                  setVisible(value);
+                },
+              }}
+              style={{ display: "none", objectFit: "cover" }}
               className="object-cover rounded-lg shadow-lg shadow-purple-500/50"
             />
           </div>
