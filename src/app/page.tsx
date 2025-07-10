@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, Image, Tag } from "antd";
+import { Card, Image, Tag, Collapse } from "antd";
 import {
   InfoCircleOutlined,
   StarOutlined,
@@ -89,41 +89,10 @@ export default function SkiTripBooking() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2">
-            {/* Recommended For You */}
-            <Card
-              className="border-0 shadow-lg"
-              style={{ marginBottom: "32px" }}
-            >
-              <div className="flex items-center space-x-3 mb-4">
-                <CheckCircleOutlined className="text-green-500 text-xl" />
-                <h2 className="text-2xl font-semibold">Recommended for You</h2>
-              </div>
-              <p className="text-gray-600 mb-4">
-                Based on your preferences:
-                <span className="font-medium text-blue-600">
-                  {userPreferences.vibe}
-                </span>
-                ,
-                <span className="font-medium text-green-600">
-                  {userPreferences.budget}
-                </span>
-                ,
-                <span className="font-medium text-purple-600">
-                  {userPreferences.groupType}
-                </span>
-              </p>
-              <div className="bg-blue-50 p-4 rounded-lg">
-                <p className="text-sm text-blue-700">
-                  <InfoCircleOutlined className="mr-2" />
-                  AI has curated this trip based on similar travelers who loved
-                  the party atmosphere and challenging slopes of Alpine Heights.
-                </p>
-              </div>
-            </Card>
-
             {/* Trip Package Overview */}
             <Card
               className="border-0 shadow-lg"
+              style={{ marginBottom: "32px" }}
               title={
                 <div className="flex items-center space-x-3">
                   <StarOutlined className="text-yellow-500" />
@@ -133,7 +102,117 @@ export default function SkiTripBooking() {
                 </div>
               }
             >
-              <div className="space-y-4">
+              <Collapse
+                items={[
+                  {
+                    key: "1",
+                    label: (
+                      <div className="flex items-center space-x-3">
+                        <CheckCircleOutlined className="text-green-500" />
+                        <span className="font-semibold">
+                          AI Recommendations
+                        </span>
+                      </div>
+                    ),
+                    children: (
+                      <div>
+                        <p className="text-gray-600 mb-4">
+                          Based on your preferences:{" "}
+                          <span className="font-medium text-blue-600">
+                            {userPreferences.vibe}
+                          </span>
+                          ,{" "}
+                          <span className="font-medium text-green-600">
+                            {userPreferences.budget}
+                          </span>
+                          ,{" "}
+                          <span className="font-medium text-purple-600">
+                            {userPreferences.groupType}
+                          </span>
+                        </p>
+                        <div className="bg-blue-50 p-4 rounded-lg mb-4">
+                          <p className="text-sm text-blue-700">
+                            <InfoCircleOutlined className="mr-2" />
+                            AI has curated this trip based on similar travelers
+                            who loved the party atmosphere and challenging
+                            slopes of Alpine Heights.
+                          </p>
+                        </div>
+                        <h3 className="text-lg font-semibold mb-4 text-gray-800">
+                          Similar Destinations You Might Like
+                        </h3>
+                        <div className="flex space-x-4 overflow-x-auto pb-4">
+                          {[
+                            {
+                              name: "Val d'Isère",
+                              image: `https://picsum.photos/300/200?random=${Math.random()}`,
+                              price: "$1,280",
+                              rating: 4.8,
+                              features: ["Expert slopes", "Luxury resorts"],
+                            },
+                            {
+                              name: "Verbier",
+                              image: `https://picsum.photos/300/200?random=${Math.random()}`,
+                              price: "$1,150",
+                              rating: 4.7,
+                              features: ["Party scene", "Off-piste"],
+                            },
+                            {
+                              name: "St. Anton",
+                              image: `https://picsum.photos/300/200?random=${Math.random()}`,
+                              price: "$980",
+                              rating: 4.6,
+                              features: ["Challenging runs", "Après-ski"],
+                            },
+                            {
+                              name: "Courchevel",
+                              image: `https://picsum.photos/300/200?random=${Math.random()}`,
+                              price: "$1,450",
+                              rating: 4.9,
+                              features: ["Luxury", "Fine dining"],
+                            },
+                          ].map((dest, index) => (
+                            <div
+                              key={index}
+                              className="flex-shrink-0 w-64 bg-white rounded-lg shadow-lg p-4 hover:shadow-xl hover:bg-blue-50 hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                            >
+                              <Image
+                                src={dest.image}
+                                alt={dest.name}
+                                className="w-full h-32 object-cover rounded-lg mb-3"
+                                preview={false}
+                              />
+                              <h4 className="font-semibold text-gray-800 mb-1">
+                                {dest.name}
+                              </h4>
+                              <div className="flex items-center justify-between mb-2">
+                                <span className="text-lg font-bold text-blue-600">
+                                  {dest.price}
+                                </span>
+                                <span className="text-sm text-gray-600">
+                                  ★ {dest.rating}
+                                </span>
+                              </div>
+                              <div className="flex flex-wrap gap-1">
+                                {dest.features.map((feature, i) => (
+                                  <span
+                                    key={i}
+                                    className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded"
+                                  >
+                                    {feature}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ),
+                  },
+                ]}
+                className="mb-4"
+              />
+              <div className="space-y-4 mt-6">
                 {tripComponents.map((component) => (
                   <TripComponentCard
                     key={component.id}
