@@ -15,6 +15,7 @@ import {
   aiRecommendations,
   mockTripComponents,
   mockUserPreferences,
+  selectedResort,
 } from "@/utils/mockData";
 import { UserPreferences, TripSummary } from "@/types/trip";
 
@@ -56,36 +57,34 @@ export default function SkiTripBooking() {
             backgroundImage: "url('/alpine-heights.png')",
           }}
         ></div>
-        <div className="relative max-w-7xl mx-auto px-8 py-20">
+        <div className="relative max-w-7xl mx-auto px-8 py-20 flex items-center justify-between gap-4">
           <div className="text-white">
             <div className="flex items-center gap-2 md:gap-4 mb-4">
-              <div className="w-10">
-                <Image
-                  height={50}
-                  width={"100%"}
-                  alt="Alpine Heights"
-                  src="/alpine-heights.png"
-                />
-              </div>
-              <h1 className="text-5xl font-bold">Alpine Heights</h1>
+              <h1 className="text-5xl font-bold">{selectedResort.name}</h1>
             </div>
+
             <p className="text-xl mb-6 max-w-2xl">
-              Experience the ultimate ski adventure in the heart of Chamonix
-              Valley. Expert-friendly slopes meet vibrant après-ski culture in
-              this legendary resort.
+              {selectedResort.description}
             </p>
 
             <div className="flex space-x-4">
-              <Tag color="blue" className="px-3 py-1 text-sm">
-                Expert-friendly
-              </Tag>
-              <Tag color="purple" className="px-3 py-1 text-sm">
-                Vibrant nightlife
-              </Tag>
-              <Tag color="green" className="px-3 py-1 text-sm">
-                Chamonix Valley
-              </Tag>
+              {selectedResort.tags.map((tag, index) => (
+                <Tag key={index} color={index === 0 ? "blue" : index === 1 ? "purple" : "green"} className="px-3 py-1 text-sm">
+                  {tag}
+                </Tag>
+              ))}
             </div>
+          </div>
+
+          <div className="hidden lg:flex w-full max-w-md image-preview-container">
+            <Image
+              height={200}
+              width={300}
+              alt={selectedResort.name}
+              src={selectedResort.image}
+              className="object-cover rounded-lg shadow-lg shadow-purple-500/50"
+              style={{ objectFit: 'cover' }}
+            />
           </div>
         </div>
       </div>

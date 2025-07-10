@@ -8,7 +8,7 @@ export interface TripComponent {
     | "transfer"
     | "flight"
     | "insurance"
-    | "addons";
+    | "add-ons";
   title: string;
   description: string;
   price: number;
@@ -49,4 +49,11 @@ export interface TripSummary {
   dates: string;
   travelers: string;
   destination: string;
+}
+
+export interface SelectedResort {
+  name: string;
+  description: string;
+  image: string;
+  tags: string[];
 }

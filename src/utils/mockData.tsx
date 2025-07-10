@@ -9,7 +9,12 @@ import {
   RocketOutlined,
 } from "@ant-design/icons";
 
-import { AIRecommendations, TripComponent, UserPreferences } from "@/types/trip";
+import {
+  AIRecommendations,
+  TripComponent,
+  UserPreferences,
+  SelectedResort,
+} from "@/types/trip";
 
 export const mockTripComponents: TripComponent[] = [
   {
@@ -17,7 +22,7 @@ export const mockTripComponents: TripComponent[] = [
     type: "resort",
     title: "Alpine Heights",
     description: "Chamonix Valley, Expert-friendly, Vibrant après-ski scene",
-    price: 0,
+    price: 100,
     icon: <GlobalOutlined />,
     customizable: true,
     features: ["Expert slopes", "Vibrant nightlife", "Scenic views"],
@@ -25,7 +30,7 @@ export const mockTripComponents: TripComponent[] = [
       {
         label: "Alpine Heights",
         value: "alpine-heights",
-        price: 0,
+        price: 100,
         description: "Perfect for expert skiers with vibrant nightlife",
         popular: true,
       },
@@ -173,7 +178,7 @@ export const mockTripComponents: TripComponent[] = [
   {
     id: "flight",
     type: "flight",
-    title: "Emirates, Economy (12.01 15:40)",
+    title: "Emirates (Economy)",
     description: "London (LHR) → Geneva (GVA), 1h 45m flight",
     price: 220,
     icon: <RocketOutlined />,
@@ -181,20 +186,20 @@ export const mockTripComponents: TripComponent[] = [
     features: ["23kg baggage", "Meal included", "Entertainment system"],
     options: [
       {
-        label: "Emirates Economy",
+        label: "Emirates (Economy)",
         value: "emirates-economy",
         price: 220,
         description: "Comfortable economy class with good amenities",
       },
       {
-        label: "Swiss Business Class",
+        label: "Swiss (Business Class)",
         value: "swiss-business",
         price: 550,
         description: "Premium business class with lounge access",
         popular: true,
       },
       {
-        label: "EasyJet Standard",
+        label: "EasyJet (Standard)",
         value: "easyjet-standard",
         price: 150,
         description: "Budget option with carry-on only",
@@ -235,8 +240,8 @@ export const mockTripComponents: TripComponent[] = [
   },
   // Add-ons component
   {
-    id: "addons",
-    type: "addons",
+    id: "add-ons",
+    type: "add-ons",
     title: "Ski Lessons & Spa Package",
     description: "3-day group lessons + 1 spa treatment",
     price: 175,
@@ -273,7 +278,7 @@ export const mockTripComponents: TripComponent[] = [
   },
 ];
 
-export const aiRecommendations:AIRecommendations[] = [
+export const aiRecommendations: AIRecommendations[] = [
   {
     name: "Val d'Isère",
     image: `https://picsum.photos/300/200?random=${Math.random()}`,
@@ -310,4 +315,12 @@ export const mockUserPreferences: UserPreferences = {
   groupType: "Group of friends",
   difficulty: "Expert",
   duration: "7 days",
+};
+
+export const selectedResort: SelectedResort = {
+  name: "Alpine Heights",
+  description:
+    "Experience the ultimate ski adventure in the heart of Chamonix Valley. Expert-friendly slopes meet vibrant après-ski culture in this legendary resort.",
+  image: "/alpine-heights.png",
+  tags: ["Expert-friendly", "Vibrant nightlife", "Chamonix Valley"],
 };
