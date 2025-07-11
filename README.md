@@ -48,14 +48,21 @@ Figma link to design file for customization screen: [Figma link](https://www.fig
 
 Clone the repo, change directory to the skibookers folder, and run the command to install packages and dependencies:
 
-```bash
 # Clone the repo
+
+```bash
 git clone https://github.com/0xonebeing/skibookers.git
+```
 
 # Change directory to the skibookers folder
+
+```bash
 cd skibookers
+```
 
 # Install packages and dependencies
+
+```bash
 npm install
 ```
 
