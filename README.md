@@ -1,11 +1,5 @@
 # Skibookers by [Sunday Oruwhone](https://github.com/0xonebeing)
 
----
-
-
-
----
-
 Experience the future of ski trip planning with this customizable ski package builder. This is a **Next.js 15** desktop-first web application built using **TypeScript**, **TailwindCSS**, and **Ant Design**. It allows users to review, customize, and proceed with their ski trip with features like AI-recommendations, etc.
 
 ---
@@ -23,7 +17,7 @@ This app delivers a premium booking interface with:
 
 ## 📦 Deployment
 
-This project is deployed to this link: [Skibookers on Vercel](https://skibookers.vercel.app)
+This app is deployed to this link for demo purposes: [Skibookers on Vercel](https://skibookers.vercel.app)
 
 ---
 
@@ -47,7 +41,7 @@ Figma link to design file for customization screen: [Figma link](https://www.fig
 
 ### ✅ Prerequisites
 
-- Node.js v1.0+
+- Node.js v18.0+
 - npm or yarn
 
 ### 🔧 Installation
@@ -55,8 +49,10 @@ Figma link to design file for customization screen: [Figma link](https://www.fig
 Clone the repo, change directory to the skibookers folder, and run the command to install packages and dependencies:
 
 ```bash
+# Clone the repo
 git clone https://github.com/0xonebeing/skibookers.git
 
+# Change directory to the skibookers folder
 cd skibookers
 
 # Install packages and dependencies
@@ -98,7 +94,7 @@ Then open [http://localhost:3000](http://localhost:3000) in your browser.
 ### 🏔 Recommended Resort Section
 
 - Resort name, description, and tags (region, difficulty, vibe)
-- Hero section with background gradient
+- Hero section with background image of resort and also feature to view full resort image
 - Responsive layout (optimized for **1440px+** desktop)
 
 ### 📦 Trip Package Overview
@@ -135,8 +131,9 @@ Then open [http://localhost:3000](http://localhost:3000) in your browser.
 ### 🎨 Modern UI Design
 
 - Inspired by **Airbnb**, **Notion**, **Stripe**
-- Gradient backgrounds, clean typography
+- Gradient colors, clean typography
 - Smooth transitions & hover states
+- Accessibility helpers
 
 ### 🧩 Component Architecture
 
